@@ -117,27 +117,23 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
 
-    event.respondWith(
+    // Page navigation request
+    if (event.request.mode === "navigate") {
+        event.respondWith(
+            fetch(event.request)
+                .catch(() => caches.match("./index.html"))
+        );
+        return;
+    }
 
+    // Other files: Cache First
+    event.respondWith(
         caches.match(event.request)
             .then(cachedResponse => {
-
-                // Cache পাওয়া গেলে সেটাই ব্যবহার করবে
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-
-                // Cache না থাকলে internet থেকে আনবে
-                return fetch(event.request);
-
+                return cachedResponse || fetch(event.request);
             })
             .catch(() => {
-
-                // Internet না থাকলে index.html দেখাবে
                 return caches.match("./index.html");
-
             })
-
     );
-
 });
