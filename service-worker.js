@@ -1,4 +1,4 @@
-const CACHE_NAME = "expense-manager-v1";
+const CACHE_NAME = "Apps-Tarek-v1";
 
 const FILES_TO_CACHE = [
     "./",
