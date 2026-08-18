@@ -35,9 +35,6 @@ const FILES_TO_CACHE = [
     "./js/transactions.js",
     "./js/transfer.js",
 
-    // Chart library
-    "./js/chart.min.js",
-
     // HTML Pages
     "./accounts.html",
     "./backup.html",
